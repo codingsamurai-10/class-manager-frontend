@@ -1,0 +1,13 @@
+.time-table-container {
+    padding: 5px;
+}
+
+.time-table-row {
+    border: 1px solid red;
+    margin-top: 1px;
+}
+
+.time-table-cell {
+    text-align: center;
+    display: inline-block;
+}
