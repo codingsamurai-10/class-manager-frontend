@@ -1,10 +1,10 @@
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import TimeTableContainer from './TimeTableContainer';
 
 const HomePage = () => {
     return (
         <div>
-            <Typography variant="h1">Homepage of the app</Typography>
+            <h2>Time Table</h2>
             <TimeTableContainer />
         </div>
     );
