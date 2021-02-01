@@ -1,6 +1,6 @@
 import TimeTableRow from './TimeTableRow';
 
-const timeTable = [
+let periodsSchedule = [
     [
         {name: 'ece', start: 9, end: 10},
         {name: 'ns', start: 11, end: 13},
@@ -11,10 +11,43 @@ const timeTable = [
         {name: 'pe', start: 11, end: 12},
         {name: 'ml', start: 12, end: 14},
         {name: 'mi', start: 15, end: 17}
+    ],
+    [
+        {name: 'emt', start: 10, end: 11},
+        {name: 'laboratory', start: 11, end: 13},
+        {name: 'ead', start: 13, end: 15},
+        {name: 'cs', start: 15, end: 16},
+        {name: 'micro', start: 16, end: 17}
+    ],
+    [
+        {name: 'mi', start: 9, end: 10},
+        {name: 'laboratory', start: 10, end: 11},
+        {name: 'emt', start: 11, end: 13},
+        {name: 'ece', start: 14, end: 15},
+    ],
+    [
+        {name: 'ed', start: 8, end: 9},
+        {name: 'cs', start: 9, end: 10},
+        {name: 'micro', start: 10, end: 11},
+        {name: 'laboratory', start: 11, end: 12},
+        {name: 'ece', start: 12, end: 13},
+        {name: 'mi', start: 13, end: 14},
+        {name: 'ml', start: 14, end: 15},
+        {name: 'ns', start: 15, end: 16},
+        {name: 'pe', start: 16, end: 17},
     ]
 ];
 
-const periodTimeSlots = [
+const workingDays = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday'
+];
+
+const tableHeadings = [
+    {name: 'Day and Time', start: 7, end: 8},
     {name: "8:00-9:00", start: 8, end: 9},
     {name: "9:00-10:00", start: 9, end: 10},
     {name: "10:00-11:00", start: 10, end: 11},
@@ -27,11 +60,12 @@ const periodTimeSlots = [
 ];
 
 export default function TimeTableContainer() {
+    let day = 0;
     return (
         <div className="time-table-container">
-        <TimeTableRow data={periodTimeSlots} />
-        {timeTable.map(row => (
-            <TimeTableRow data={row} />
+        <TimeTableRow data={tableHeadings} day={null} />
+        {periodsSchedule.map(row => (
+            <TimeTableRow data={row.slice()} day={workingDays[day++]} />
       ))}
         </div>
     )

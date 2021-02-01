@@ -4,7 +4,6 @@ import TimeTableContainer from './TimeTableContainer';
 const HomePage = () => {
     return (
         <div>
-            <h2>Time Table</h2>
             <TimeTableContainer />
         </div>
     );
