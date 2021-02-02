@@ -12,8 +12,13 @@ export default function TimeTableCell(props) {
     };
 
     return (
-        <div className="time-table-cell" style={dynamicStyleConfiguration}>
-                {props.data.name}
-        </div>
+        <>
+            {props.data.name && (
+            <div className="time-table-cell" style={dynamicStyleConfiguration}>
+                    {props.data.name}
+            </div>
+            )
+            }
+        </>
     )
 }

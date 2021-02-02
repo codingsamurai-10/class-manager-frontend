@@ -3,7 +3,6 @@ import TimeTableCell from './TimeTableCell';
 export default function TimeTableRow(props) {
     const times = [];
     const numberOfPeriods = props.data.length;
-    if(props.day) times.push({name: props.day, start: 7, end: 8});
     for (let i = 0; i < numberOfPeriods; i++) {
         const currentPeriod = props.data[i];
         if (i === 0) {
@@ -35,9 +34,10 @@ export default function TimeTableRow(props) {
     }
     return (
         <div className="time-table-row">
-                {times.map(cell => (
-                    <TimeTableCell data={cell} key={cell.start} />
-                ))}
+            <TimeTableCell data={{name: props.day, start: 7, end: 8}} />
+            {times.map(cell => (
+                <TimeTableCell data={cell} key={cell.start} />
+            ))}
         </div>
     )
 }
