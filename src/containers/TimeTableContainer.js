@@ -38,7 +38,8 @@ let periodsSchedule = [
     ]
 ];
 
-const workingDays = [
+const firstColumnValues = [
+    'Day/Time',
     'Monday',
     'Tuesday',
     'Wednesday',
@@ -47,7 +48,6 @@ const workingDays = [
 ];
 
 const tableHeadings = [
-    { name: 'Day and Time', start: 7, end: 8 },
     { name: "8:00-9:00", start: 8, end: 9 },
     { name: "9:00-10:00", start: 9, end: 10 },
     { name: "10:00-11:00", start: 10, end: 11 },
@@ -60,12 +60,12 @@ const tableHeadings = [
 ];
 
 export default function TimeTableContainer() {
-    let day = 0;
+    let rowIndex = 0;
     return (
         <div className="time-table-container">
-            <TimeTableRow data={tableHeadings} day={null} />
+            <TimeTableRow data={tableHeadings} day={firstColumnValues[rowIndex++]} />
             {periodsSchedule.map(row => (
-                <TimeTableRow data={row.slice()} day={workingDays[day++]} />
+                <TimeTableRow data={row} day={firstColumnValues[rowIndex++]} />
             ))}
         </div>
     )
