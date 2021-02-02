@@ -3,9 +3,6 @@ import HomePage from './containers/HomePage';
 import Notifications from './containers/Notifications';
 import Profile from './containers/Profile';
 
-
-
-
 const Routing = () => {
     return (
         <div>

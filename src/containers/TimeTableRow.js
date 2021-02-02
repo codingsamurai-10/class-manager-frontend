@@ -17,7 +17,7 @@ export default function TimeTableRow(props) {
             }
         }
         let color = currentPeriod.color;
-        if(props.color) color = props.color;
+        if (props.color) color = props.color;
         times.push({
             name: currentPeriod.name,
             start: currentPeriod.start,
@@ -26,10 +26,10 @@ export default function TimeTableRow(props) {
         });
 
         let nextPeriodStartTime = null;
-        if(i + 1 < numberOfPeriods) nextPeriodStartTime = props.data[i + 1].start;
+        if (i + 1 < numberOfPeriods) nextPeriodStartTime = props.data[i + 1].start;
         else nextPeriodStartTime = 17;
-        
-        if(nextPeriodStartTime !== currentPeriod.end) {
+
+        if (nextPeriodStartTime !== currentPeriod.end) {
             times.push({
                 name: 'Free',
                 start: currentPeriod.end,
@@ -41,7 +41,7 @@ export default function TimeTableRow(props) {
 
     return (
         <div className="time-table-row">
-            <TimeTableCell data={{name: props.day, start: 7, end: 8, color: "#ec407a"}} />
+            <TimeTableCell data={{ name: props.day, start: 7, end: 8, color: "#ec407a" }} />
             {times.map(cell => (
                 <TimeTableCell data={cell} key={cell.start} />
             ))}

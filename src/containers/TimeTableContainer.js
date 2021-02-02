@@ -65,9 +65,9 @@ const generateRandomColorCode = () => {
 
 export default function TimeTableContainer() {
     let colorOfSubjectCell = new Map();
-    for(let i = 0; i < periodsSchedule.length; ++i) {
-        for(let j = 0; j < periodsSchedule[i].length; ++j) {
-            if(!colorOfSubjectCell.has(periodsSchedule[i][j].name)) {
+    for (let i = 0; i < periodsSchedule.length; ++i) {
+        for (let j = 0; j < periodsSchedule[i].length; ++j) {
+            if (!colorOfSubjectCell.has(periodsSchedule[i][j].name)) {
                 colorOfSubjectCell.set(periodsSchedule[i][j].name, generateRandomColorCode());
             }
             periodsSchedule[i][j]["color"] = colorOfSubjectCell.get(periodsSchedule[i][j].name);

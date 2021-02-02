@@ -1,11 +1,11 @@
 import { Typography } from "@material-ui/core";
 
 const Notifications = () => {
-    return ( 
+    return (
         <div className="notifications">
-            <Typography variant = 'h2'>Notif Page</Typography>
+            <Typography variant='h2'>Notif Page</Typography>
         </div>
-     );
+    );
 }
- 
+
 export default Notifications;
