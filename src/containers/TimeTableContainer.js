@@ -59,11 +59,25 @@ const tableHeadings = [
     { name: "16:00-17:00", start: 16, end: 17 }
 ];
 
+const generateRandomColorCode = () => {
+    return ("#" + ((1 << 24) * Math.random() | 0).toString(16));
+}
+
 export default function TimeTableContainer() {
+    let colorOfSubjectCell = new Map();
+    for(let i = 0; i < periodsSchedule.length; ++i) {
+        for(let j = 0; j < periodsSchedule[i].length; ++j) {
+            if(!colorOfSubjectCell.has(periodsSchedule[i][j].name)) {
+                colorOfSubjectCell.set(periodsSchedule[i][j].name, generateRandomColorCode());
+            }
+            periodsSchedule[i][j]["color"] = colorOfSubjectCell.get(periodsSchedule[i][j].name);
+        }
+    }
+    console.table(periodsSchedule);
     let rowIndex = 0;
     return (
         <div className="time-table-container">
-            <TimeTableRow data={tableHeadings} day={firstColumnValues[rowIndex++]} />
+            <TimeTableRow data={tableHeadings} day={firstColumnValues[rowIndex++]} color="#ec407a" />
             {periodsSchedule.map(row => (
                 <TimeTableRow data={row} day={firstColumnValues[rowIndex++]} />
             ))}

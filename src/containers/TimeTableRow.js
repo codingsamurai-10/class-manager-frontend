@@ -1,8 +1,9 @@
 import TimeTableCell from './TimeTableCell';
 
 export default function TimeTableRow(props) {
-    const times = [];
+    let times = [];
     const numberOfPeriods = props.data.length;
+
     for (let i = 0; i < numberOfPeriods; i++) {
         const currentPeriod = props.data[i];
         if (i === 0) {
@@ -10,14 +11,18 @@ export default function TimeTableRow(props) {
                 times.push({
                     name: 'Free',
                     start: 8,
-                    end: props.data[0].start
+                    end: props.data[0].start,
+                    color: "#81c784"
                 });
             }
         }
+        let color = currentPeriod.color;
+        if(props.color) color = props.color;
         times.push({
             name: currentPeriod.name,
             start: currentPeriod.start,
-            end: currentPeriod.end
+            end: currentPeriod.end,
+            color: color
         });
 
         let nextPeriodStartTime = null;
@@ -28,13 +33,15 @@ export default function TimeTableRow(props) {
             times.push({
                 name: 'Free',
                 start: currentPeriod.end,
-                end: nextPeriodStartTime
+                end: nextPeriodStartTime,
+                color: "#81c784"
             });
         }
     }
+
     return (
         <div className="time-table-row">
-            <TimeTableCell data={{name: props.day, start: 7, end: 8}} />
+            <TimeTableCell data={{name: props.day, start: 7, end: 8, color: "#ec407a"}} />
             {times.map(cell => (
                 <TimeTableCell data={cell} key={cell.start} />
             ))}

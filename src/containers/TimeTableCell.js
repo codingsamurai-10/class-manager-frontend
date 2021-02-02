@@ -5,10 +5,11 @@ export default function TimeTableCell(props) {
         dynamicCellWidth = minCellWidth;
     }
 
+    let dynamicBackgroundColor = props.data.color;
+
     const dynamicStyleConfiguration = {
         width: `${dynamicCellWidth}%`,
-        // TODO: remove random colors, provide same color to same subjects
-        backgroundColor: `${"#" + ((1 << 24) * Math.random() | 0).toString(16)}`
+        backgroundColor: `${dynamicBackgroundColor}`
     };
 
     return (
