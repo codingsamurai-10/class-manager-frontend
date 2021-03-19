@@ -73,7 +73,6 @@ export default function TimeTableContainer() {
             periodsSchedule[i][j]["color"] = colorOfSubjectCell.get(periodsSchedule[i][j].name);
         }
     }
-    console.table(periodsSchedule);
     let rowIndex = 0;
     return (
         <div className="time-table-container">
