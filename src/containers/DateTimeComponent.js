@@ -3,14 +3,14 @@ import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
-  KeyboardDatePicker,
+  DateTimePicker,
 } from '@material-ui/pickers';
 
-export default function DateTimePicker(props) {
+export default function DateTimeComponent(props) {
     return (
         <>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <KeyboardDatePicker
+                <DateTimePicker
                     disablePast
                     margin="normal"
                     id="date-picker-dialog"

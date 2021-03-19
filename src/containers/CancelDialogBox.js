@@ -5,7 +5,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import DateTimePicker from './DateTimePicker';
+import DateTimePicker from './DateTimeComponent';
 
 export default function CancelDialogBox() {
   const [open, setOpen] = React.useState(false);
