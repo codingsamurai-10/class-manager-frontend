@@ -5,9 +5,11 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import DateTimePicker from './DateTimePicker';
 
 export default function CancelDialogBox() {
   const [open, setOpen] = React.useState(false);
+  const [selectedDate, setSelectedDate] = React.useState();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -16,6 +18,15 @@ export default function CancelDialogBox() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
+  const handleCancelSlot = () => {
+    handleClose();
+    console.log(selectedDate); // send req to backend
+  }
 
   return (
     <>
@@ -27,12 +38,14 @@ export default function CancelDialogBox() {
             Choose the date and time of the slot you want to cancel.
           </DialogContentText>
 
+          <DateTimePicker selectedDate={selectedDate} handleDateChange={handleDateChange} />
+        
         </DialogContent>
         <DialogActions>
           <Button variant="outlined" onClick={handleClose} color="primary">
             Close
           </Button>
-          <Button variant="contained" disableElevation onClick={handleClose} color="primary">
+          <Button variant="contained" disableElevation onClick={handleCancelSlot} color="primary">
             Confirm
           </Button>
         </DialogActions>
