@@ -2,7 +2,6 @@ import React from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
   DateTimePicker,
 } from '@material-ui/pickers';
 
@@ -11,28 +10,17 @@ export default function DateTimeComponent(props) {
         <>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <DateTimePicker
+                    ampm={false}
+                    minutesStep={15}
                     disablePast
                     margin="normal"
                     id="date-picker-dialog"
-                    label="Date of slot"
+                    label="Pick slot"
                     format="dd/MM/yyyy"
                     value={props.slotToCancel}
                     onChange={props.handleDateTimeChange}
                     KeyboardButtonProps={{
                         'aria-label': 'change date',
-                    }}
-                />
-                <KeyboardTimePicker
-                    ampm={false}
-                    minutesStep={15}
-                    initialFocusedDate={Date.now()}
-                    margin="normal"
-                    id="time-picker"
-                    label="Time of slot"
-                    value={props.slotToCancel}
-                    onChange={props.handleDateTimeChange}
-                    KeyboardButtonProps={{
-                        'aria-label': 'change time',
                     }}
                 />
             </MuiPickersUtilsProvider>
