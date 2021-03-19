@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import RescheduleDialogBox from './RescheduleDialogBox';
+import RescheduleDialogBox from './BookDialogBox';
 import CancelDialogBox from './CancelDialogBox';
 
 const useStyles = makeStyles((theme) => ({
