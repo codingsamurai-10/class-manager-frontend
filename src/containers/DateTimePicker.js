@@ -16,8 +16,8 @@ export default function DateTimePicker(props) {
                     id="date-picker-dialog"
                     label="Date picker dialog"
                     format="dd/MM/yyyy"
-                    value={props.selectedDate}
-                    onChange={props.handleDateChange}
+                    value={props.slotToCancel}
+                    onChange={props.handleDateTimeChange}
                     KeyboardButtonProps={{
                         'aria-label': 'change date',
                     }}
@@ -29,8 +29,8 @@ export default function DateTimePicker(props) {
                     margin="normal"
                     id="time-picker"
                     label="Time picker"
-                    value={props.selectedDate}
-                    onChange={props.handleDateChange}
+                    value={props.slotToCancel}
+                    onChange={props.handleDateTimeChange}
                     KeyboardButtonProps={{
                         'aria-label': 'change time',
                     }}

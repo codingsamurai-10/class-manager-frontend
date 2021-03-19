@@ -9,7 +9,7 @@ import DateTimePicker from './DateTimePicker';
 
 export default function CancelDialogBox() {
   const [open, setOpen] = React.useState(false);
-  const [selectedDate, setSelectedDate] = React.useState();
+  const [slotToCancel, setSlotToCancel] = React.useState();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -19,13 +19,13 @@ export default function CancelDialogBox() {
     setOpen(false);
   };
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
+  const handleDateTimeChange = (date) => {
+    setSlotToCancel(date);
   };
 
   const handleCancelSlot = () => {
     handleClose();
-    console.log(selectedDate); // send req to backend
+    console.log(slotToCancel); // send req to backend
   }
 
   return (
@@ -38,7 +38,7 @@ export default function CancelDialogBox() {
             Choose the date and time of the slot you want to cancel.
           </DialogContentText>
 
-          <DateTimePicker selectedDate={selectedDate} handleDateChange={handleDateChange} />
+          <DateTimePicker slotToCancel={slotToCancel} handleDateTimeChange={handleDateTimeChange} />
         
         </DialogContent>
         <DialogActions>
