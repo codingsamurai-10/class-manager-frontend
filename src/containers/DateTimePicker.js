@@ -14,7 +14,7 @@ export default function DateTimePicker(props) {
                     disablePast
                     margin="normal"
                     id="date-picker-dialog"
-                    label="Date picker dialog"
+                    label="Date of slot"
                     format="dd/MM/yyyy"
                     value={props.slotToCancel}
                     onChange={props.handleDateTimeChange}
@@ -28,7 +28,7 @@ export default function DateTimePicker(props) {
                     initialFocusedDate={Date.now()}
                     margin="normal"
                     id="time-picker"
-                    label="Time picker"
+                    label="Time of slot"
                     value={props.slotToCancel}
                     onChange={props.handleDateTimeChange}
                     KeyboardButtonProps={{
