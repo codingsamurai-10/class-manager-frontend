@@ -6,14 +6,7 @@ import {
   Calendar
 } from '@material-ui/pickers';
 
-export default function DateOfSlotToBook() {
-
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date); // search time table of given date (to be done on backend) and return free slots
-  };
-
+export default function DateOfSlotToBook(props) {
   const disableWeekends = (date) => {
     return date.getDay() === 0 || date.getDay() === 6;
   }
@@ -31,8 +24,8 @@ export default function DateOfSlotToBook() {
           <Paper style={{ overflow: "hidden" }}>
             <Calendar
               disablePast
-              date={selectedDate}
-              onChange={handleDateChange}
+              date={props.selectedDate}
+              onChange={props.handleDateChange}
               shouldDisableDate={disableWeekends}
               maxDate={maxDateInFuture}
             />

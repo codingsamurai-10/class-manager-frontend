@@ -11,8 +11,13 @@ import SlotDurationSelector from './SlotDurationSelector';
 export default function BookDialogBox() {
   const [open, setOpen] = React.useState(false);
   const [slotDurationWanted, setSlotDurationWanted] = React.useState(0);
-  const [dateOfSlot, setDateOfSlot] = React.useState();
+  const [dateOfSlot, setDateOfSlot] = React.useState(new Date());
   const [slotToBook, setSlotToBook] = React.useState();
+
+  const handleDateChange = (date) => {
+    console.log(date);
+    setDateOfSlot(date); // search time table of given date (to be done on backend) and return free slots
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -34,11 +39,11 @@ export default function BookDialogBox() {
         <DialogTitle id="form-dialog-title">Book</DialogTitle>
         <DialogContent>
           <DialogContentText>
-          Choose date and duration of your slot to find the possible free times.
+            Choose date and duration of your slot to find the possible free times.
           </DialogContentText>
 
           <SlotDurationSelector />
-          <DateOfSlotToBook />
+          <DateOfSlotToBook selectedDate={dateOfSlot} handleDateChange={handleDateChange} />
           {/* <AvailableFreeSlots /> */}
 
         </DialogContent>
