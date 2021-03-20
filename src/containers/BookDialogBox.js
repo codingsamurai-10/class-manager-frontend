@@ -5,11 +5,13 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import AvailableFreeSlots from './AvailableFreeSlots';
+import DateOfSlotToBook from './DateOfSlotToBook';
+import SlotDurationSelector from './SlotDurationSelector';
 
 export default function BookDialogBox() {
   const [open, setOpen] = React.useState(false);
   const [slotDurationWanted, setSlotDurationWanted] = React.useState(0);
+  const [dateOfSlot, setDateOfSlot] = React.useState();
   const [slotToBook, setSlotToBook] = React.useState();
 
   const handleClickOpen = () => {
@@ -32,9 +34,13 @@ export default function BookDialogBox() {
         <DialogTitle id="form-dialog-title">Book</DialogTitle>
         <DialogContent>
           <DialogContentText>
-          These are the available free slots.
+          Choose date and duration of your slot to find the possible free times.
           </DialogContentText>
-          <AvailableFreeSlots />
+
+          <SlotDurationSelector />
+          <DateOfSlotToBook />
+          {/* <AvailableFreeSlots /> */}
+
         </DialogContent>
         <DialogActions>
           <Button variant="outlined" onClick={handleClose} color="primary">
