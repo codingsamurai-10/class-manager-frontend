@@ -1,27 +1,21 @@
 import React from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 import { Paper } from "@material-ui/core";
-import {
-  MuiPickersUtilsProvider,
-  Calendar
-} from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, Calendar } from '@material-ui/pickers';
 
 export default function DateOfSlotToBook(props) {
   const disableWeekends = (date) => {
     return date.getDay() === 0 || date.getDay() === 6;
   }
 
-  const maxDateInFuture = () => { // needs correction
-    let currentTime = new Date();
-    currentTime.setDate(currentTime.getDate() + 30);
-    return currentTime;
-  }
+  let maxDateInFuture = new Date();
+  maxDateInFuture.setDate(maxDateInFuture.getDate() + 14);
 
   return (
     <>
       <div>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <Paper style={{ overflow: "hidden" }}>
+          <Paper style={{ overflow: "hidden" }} elevation={0} variant="outlined">
             <Calendar
               disablePast
               date={props.selectedDate}
