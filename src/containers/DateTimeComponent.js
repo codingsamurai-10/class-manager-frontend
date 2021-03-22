@@ -11,7 +11,7 @@ export default function DateTimeComponent(props) {
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <DateTimePicker
                     ampm={false}
-                    minutesStep={15}
+                    minutesStep={60}
                     disablePast
                     margin="normal"
                     id="date-picker-dialog"

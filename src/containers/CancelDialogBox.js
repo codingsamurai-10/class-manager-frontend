@@ -25,7 +25,7 @@ export default function CancelDialogBox() {
 
   const handleCancelSlot = () => {
     handleClose();
-    console.log(slotToCancel); // send req to backend
+    // send req to backend
   }
 
   return (
