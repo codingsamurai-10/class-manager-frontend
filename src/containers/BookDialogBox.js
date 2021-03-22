@@ -7,12 +7,15 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DateOfSlotToBook from './DateOfSlotToBook';
 import SlotDurationSelector from './SlotDurationSelector';
 import SearchIcon from '@material-ui/icons/Search';
+import AvailableFreeSlots from './AvailableFreeSlots';
+
+const slots = [8, 9, 10, 15, 19]; // temporary data, to be fetched from backend
 
 export default function BookDialogBox() {
   const [open, setOpen] = React.useState(false);
   const [slotDurationWanted, setSlotDurationWanted] = React.useState(1);
   const [dateOfSlotWanted, setDateOfSlotWanted] = React.useState(new Date());
-  const [slotToBook, setSlotToBook] = React.useState();
+  const [freeSlots, setFreeSlots] = React.useState(null);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -33,11 +36,11 @@ export default function BookDialogBox() {
   const findFreeSlots = () => { // send slot duration and date to backend for searching
     console.log(slotDurationWanted);
     console.log(dateOfSlotWanted);
+    setFreeSlots(slots);
   }
 
   const handleBookSlot = () => { // need to set slotToBook
-    handleClose();
-    console.log(slotToBook); // send req to backend
+    handleClose(); // send req to backend
   }
 
   return (
@@ -58,16 +61,16 @@ export default function BookDialogBox() {
             Search for free slots
           </Button>
 
-        {/* <AvailableFreeSlots /> */}
+        {freeSlots && <AvailableFreeSlots freeSlots={freeSlots} />}
 
         </DialogContent>
       <DialogActions>
         <Button variant="outlined" onClick={handleClose} color="primary">
           Close
           </Button>
-        <Button variant="contained" disableElevation onClick={handleBookSlot} color="primary">
+        {freeSlots && <Button variant="contained" disableElevation onClick={handleBookSlot} color="primary">
           Confirm
-          </Button>
+          </Button>}
       </DialogActions>
     </Dialog>
     </>
