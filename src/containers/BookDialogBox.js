@@ -3,14 +3,13 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DateOfSlotToBook from './DateOfSlotToBook';
 import SlotDurationSelector from './SlotDurationSelector';
 
 export default function BookDialogBox() {
   const [open, setOpen] = React.useState(false);
-  const [slotDurationWanted, setSlotDurationWanted] = React.useState(0);
+  const [slotDurationWanted, setSlotDurationWanted] = React.useState(1);
   const [dateOfSlot, setDateOfSlot] = React.useState(new Date());
   const [slotToBook, setSlotToBook] = React.useState();
 
@@ -27,9 +26,13 @@ export default function BookDialogBox() {
     setOpen(false);
   };
 
-  const handleBookSlot = () => {
+  const handleBookSlot = () => { // need to set slotToBook
     handleClose();
     console.log(slotToBook); // send req to backend
+  }
+
+  const handleSlotDurationWanted = (event) => {
+    console.log(event.target.value); // send req to backend
   }
 
   return (
@@ -38,11 +41,8 @@ export default function BookDialogBox() {
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Book</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Choose date and duration of your slot to find the possible free times.
-          </DialogContentText>
 
-          <SlotDurationSelector />
+          <SlotDurationSelector handleRadioChange={handleSlotDurationWanted} />
           <DateOfSlotToBook selectedDate={dateOfSlot} handleDateChange={handleDateChange} />
           {/* <AvailableFreeSlots /> */}
 
