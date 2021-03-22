@@ -9,13 +9,14 @@ import SlotDurationSelector from './SlotDurationSelector';
 import SearchIcon from '@material-ui/icons/Search';
 import AvailableFreeSlots from './AvailableFreeSlots';
 
-const slots = [8, 9, 10, 15, 19]; // temporary data, to be fetched from backend
+const slots = [8, 9, 10, 15, 19, 20, 21, 23]; // temporary data, to be fetched from backend
 
 export default function BookDialogBox() {
   const [open, setOpen] = React.useState(false);
   const [slotDurationWanted, setSlotDurationWanted] = React.useState(1);
   const [dateOfSlotWanted, setDateOfSlotWanted] = React.useState(new Date());
   const [freeSlots, setFreeSlots] = React.useState(null);
+  const [slotSelected, setSlotSelected] = React.useState(null);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -39,6 +40,10 @@ export default function BookDialogBox() {
     setFreeSlots(slots);
   }
 
+  const handleSlotSelected = (slot) => {
+    setSlotSelected(slot);
+  }
+
   const handleBookSlot = () => { // need to set slotToBook
     handleClose(); // send req to backend
   }
@@ -46,7 +51,7 @@ export default function BookDialogBox() {
   return (
     <>
       <Button variant="contained" color="secondary" onClick={handleClickOpen}>Book a slot</Button>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" maxWidth="sm">
         <DialogTitle id="form-dialog-title">Book</DialogTitle>
         <DialogContent>
 
@@ -61,14 +66,14 @@ export default function BookDialogBox() {
             Search for free slots
           </Button>
 
-        {freeSlots && <AvailableFreeSlots freeSlots={freeSlots} />}
+        {freeSlots && <AvailableFreeSlots freeSlots={freeSlots} slotSelected={slotSelected} handleSlotSelected={handleSlotSelected} />}
 
         </DialogContent>
       <DialogActions>
         <Button variant="outlined" onClick={handleClose} color="primary">
           Close
           </Button>
-        {freeSlots && <Button variant="contained" disableElevation onClick={handleBookSlot} color="primary">
+        {slotSelected && <Button variant="contained" disableElevation onClick={handleBookSlot} color="primary">
           Confirm
           </Button>}
       </DialogActions>
