@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
 import { Link } from "react-router-dom";
 // import PropTypes from 'prop-types';
@@ -27,6 +27,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
+import InvertColorsIcon from '@material-ui/icons/InvertColors';
+import SwitchUI from '@material-ui/core/Switch'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import { CustomThemeContext } from '../themes/customThemeProvider';
 import Routing from '../Routing';
 
 const drawerWidth = 240;
@@ -57,6 +61,9 @@ const useStyles = makeStyles((theme) => ({
     },
 
   },
+  title:{
+    flexGrow: 1,
+  },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
@@ -69,11 +76,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ResponsiveDrawer(props) {
+  const{currentTheme, setTheme} = useContext(CustomThemeContext)
+  const isDark = Boolean(currentTheme === 'dark')
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [open, setOpen] = React.useState(true);
+
+  const handleThemeChange = (e) =>{
+    let {checked} = e.target
+    if(checked){
+      setTheme('dark')
+    }
+    else{
+      setTheme('normal')
+    }
+  }
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -147,9 +166,13 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography variant="h6" noWrap className={classes.title}>
             Class Manager
           </Typography>
+          <FormControlLabel
+          control={<SwitchUI color='secondary' checked ={isDark} onChange={handleThemeChange}/>}
+          label={<InvertColorsIcon />}
+          />
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
