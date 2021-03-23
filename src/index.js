@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import CustomThemeProvider from './themes/customThemeProvider';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <CustomThemeProvider>
     <App />
-  </React.StrictMode>,
+  </CustomThemeProvider>
+  ,
   document.getElementById('root')
 );
 
