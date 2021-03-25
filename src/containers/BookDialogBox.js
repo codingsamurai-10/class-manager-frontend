@@ -8,6 +8,7 @@ import DateOfSlotToBook from './DateOfSlotToBook';
 import SlotDurationSelector from './SlotDurationSelector';
 import SearchIcon from '@material-ui/icons/Search';
 import AvailableFreeSlots from './AvailableFreeSlots';
+import ConfirmationSnackbar from './ConfirmationSnackbar';
 
 const slots = [8, 9, 10, 15, 19, 20, 21, 23]; // temporary data, to be fetched from backend
 
@@ -17,6 +18,8 @@ export default function BookDialogBox() {
   const [dateOfSlotWanted, setDateOfSlotWanted] = React.useState(new Date());
   const [freeSlots, setFreeSlots] = React.useState(null);
   const [slotSelected, setSlotSelected] = React.useState(null);
+  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+  const [cancelSuccessfull, setCancelSuccessfull] = React.useState(null);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -44,8 +47,17 @@ export default function BookDialogBox() {
     setSlotSelected(slot);
   }
 
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
+
   const handleBookSlot = () => { // need to set slotToBook
-    handleClose(); // send req to backend
+    // send req to backend
+    setTimeout(() => {
+      setCancelSuccessfull(true);
+      // setCancelSuccessfull(false);
+      setSnackbarOpen(true);
+    }, 1000);
   }
 
   return (
@@ -66,18 +78,20 @@ export default function BookDialogBox() {
             Search for free slots
           </Button>
 
-        {freeSlots && <AvailableFreeSlots freeSlots={freeSlots} slotSelected={slotSelected} handleSlotSelected={handleSlotSelected} />}
+          {freeSlots && <AvailableFreeSlots freeSlots={freeSlots} slotSelected={slotSelected} handleSlotSelected={handleSlotSelected} />}
 
         </DialogContent>
-      <DialogActions>
-        <Button variant="outlined" onClick={handleClose} color="primary">
-          Close
+        <DialogActions>
+          <Button variant="outlined" onClick={handleClose} color="primary">
+            Close
           </Button>
-        {slotSelected && <Button variant="contained" disableElevation onClick={handleBookSlot} color="primary">
-          Confirm
+          {slotSelected && <Button variant="contained" disableElevation onClick={handleBookSlot} color="primary">
+            Confirm
           </Button>}
-      </DialogActions>
-    </Dialog>
+
+          <ConfirmationSnackbar open={snackbarOpen} handleClose={handleSnackbarClose} success={cancelSuccessfull}></ConfirmationSnackbar>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }
