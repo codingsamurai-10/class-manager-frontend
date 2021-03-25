@@ -2,16 +2,7 @@
     box-sizing: border-box;
 }
 
-.time-table-row {
-    font-size: 1.3em;
-    position: relative;
-}
-
 .time-table-cell {
-    text-align: center;
-    display: inline-flex;
-    justify-content: space-around;
-    align-items: center;
     border: 1px solid #3b3b3b;
     height: 7.5em;
 }
