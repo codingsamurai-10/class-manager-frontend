@@ -65,7 +65,7 @@ const Notifications = () => { //data fetching to be done in different file and p
                 }
               />
             </ListItem>
-            <Divider variant="inset" component="li" />
+            <Divider  key={index} variant="inset" component="li" />
           </>
         ))
       }
