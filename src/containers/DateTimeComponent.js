@@ -1,8 +1,9 @@
 import React from 'react';
 import DateFnsUtils from '@date-io/date-fns';
+import { getDateOfNextFriday, disableWeekends } from './helpers';
 import {
-  MuiPickersUtilsProvider,
-  DateTimePicker,
+    MuiPickersUtilsProvider,
+    DateTimePicker,
 } from '@material-ui/pickers';
 
 export default function DateTimeComponent(props) {
@@ -22,6 +23,8 @@ export default function DateTimeComponent(props) {
                     KeyboardButtonProps={{
                         'aria-label': 'change date',
                     }}
+                    shouldDisableDate={disableWeekends}
+                    maxDate={getDateOfNextFriday()}
                 />
             </MuiPickersUtilsProvider>
         </>
