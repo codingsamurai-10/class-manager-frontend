@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -95,56 +95,63 @@ const tableBodyCellStyles = (color) => {
   }
 }
 
-export default function TimeTableContainer() {
-  let colorOfSubjectCell = new Map();
-  for (let i = 0; i < periodsSchedule.length; ++i) {
-    for (let j = 0; j < periodsSchedule[i].length; ++j) {
-      if (!colorOfSubjectCell.has(periodsSchedule[i][j].name)) {
-        colorOfSubjectCell.set(periodsSchedule[i][j].name, generateRandomColorCode());
+class TimeTableContainer extends Component {
+  constructor() {
+    super();
+    let colorOfSubjectCell = new Map();
+    for (let i = 0; i < periodsSchedule.length; ++i) {
+      for (let j = 0; j < periodsSchedule[i].length; ++j) {
+        if (!colorOfSubjectCell.has(periodsSchedule[i][j].name)) {
+          colorOfSubjectCell.set(periodsSchedule[i][j].name, generateRandomColorCode());
+        }
+        periodsSchedule[i][j]["color"] = colorOfSubjectCell.get(periodsSchedule[i][j].name);
       }
-      periodsSchedule[i][j]["color"] = colorOfSubjectCell.get(periodsSchedule[i][j].name);
     }
   }
 
-  let currentDay = 0;
-  return (
-    <TableContainer className="time-table-container" component={Paper}>
-      <Table stickyHeader>
-        <TableHead>
-          <TableRow>
-            {tableHeadings.map(value => (
-              <TableCell
-                align="center"
-                style={tableHeadingStyles}
-                className="time-table-cell">
-                {value}
-              </TableCell>
-            ))}
-          </TableRow>
-        </TableHead>
-
-        <TableBody>
-          {periodsSchedule.map(currentDayPeriods => (
+  render() {
+    let currentDay = 0;
+    return (
+      <TableContainer className="time-table-container" component={Paper}>
+        <Table stickyHeader>
+          <TableHead>
             <TableRow>
-              <TableCell
-                align="center"
-                style={tableHeadingStyles}
-                className="time-table-cell">
-                {daysOfWeek[currentDay++]}
-              </TableCell>
-
-              {currentDayPeriods.map(period => (
+              {tableHeadings.map(value => (
                 <TableCell
-                  colspan={period.end - period.start}
-                  align="center" className="time-table-cell"
-                  style={tableBodyCellStyles(period.color)}>
-                  {period.name}
+                  align="center"
+                  style={tableHeadingStyles}
+                  className="time-table-cell">
+                  {value}
                 </TableCell>
               ))}
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  )
+          </TableHead>
+
+          <TableBody>
+            {periodsSchedule.map(currentDayPeriods => (
+              <TableRow>
+                <TableCell
+                  align="center"
+                  style={tableHeadingStyles}
+                  className="time-table-cell">
+                  {daysOfWeek[currentDay++]}
+                </TableCell>
+
+                {currentDayPeriods.map(period => (
+                  <TableCell
+                    colspan={period.end - period.start}
+                    align="center" className="time-table-cell"
+                    style={tableBodyCellStyles(period.color)}>
+                    {period.name}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    )
+  }
 }
+
+export default TimeTableContainer;

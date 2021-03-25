@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 
 import { Link } from "react-router-dom";
 // import PropTypes from 'prop-types';
@@ -32,6 +32,7 @@ import SwitchUI from '@material-ui/core/Switch'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import { CustomThemeContext } from '../themes/customThemeProvider';
 import Routing from '../Routing';
+import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 
 const drawerWidth = 240;
 
@@ -61,8 +62,11 @@ const useStyles = makeStyles((theme) => ({
     },
 
   },
-  title:{
+  title: {
     flexGrow: 1,
+  },
+  formControl: {
+    minWidth: 110
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
@@ -76,20 +80,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ResponsiveDrawer(props) {
-  const{currentTheme, setTheme} = useContext(CustomThemeContext)
+  const { currentTheme, setTheme } = useContext(CustomThemeContext)
   const isDark = Boolean(currentTheme === 'dark')
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [open, setOpen] = React.useState(true);
-
-  const handleThemeChange = (e) =>{
-    let {checked} = e.target
-    if(checked){
+  const [group, setGroup] = React.useState('');
+  const [subGroup, setSubGroup] = React.useState('');
+  const handleThemeChange = (e) => {
+    let { checked } = e.target
+    if (checked) {
       setTheme('dark')
     }
-    else{
+    else {
       setTheme('normal')
     }
   }
@@ -101,6 +106,13 @@ function ResponsiveDrawer(props) {
     setOpen(!open);
   }
 
+  const handleChangeGroup = (event) => {
+    setGroup(event.target.value);
+  }
+
+  const handleChangeSubGroup = (event)=>{
+    setSubGroup(event.target.value);
+  }
   const drawer = (
     <div>
       <div className={classes.toolbar} />
@@ -124,13 +136,42 @@ function ResponsiveDrawer(props) {
               <ListItemIcon>
                 <ClassIcon />
               </ListItemIcon>
-              <ListItemText primary="G1" />
+              <FormControl className={classes.formControl}>
+                <InputLabel id='Group-label'>Group</InputLabel>
+                <Select
+                  labelId='Group-label'
+                  id='Group'
+                  value={group}
+                  onChange={handleChangeGroup}
+                  label="Group"
+                >
+                  <MenuItem value={'G1'}>G1</MenuItem>
+                  <MenuItem value={'G2'}>G2</MenuItem>
+                </Select>
+              </FormControl>
             </ListItem>
             <ListItem button className={classes.nested}>
               <ListItemIcon>
                 <GroupIcon />
               </ListItemIcon>
-              <ListItemText primary="E2" />
+              <FormControl className={classes.formControl}>
+                <InputLabel id='subGroup-label'>Sub-Group</InputLabel>
+                <Select
+                  labelId='subGroup-label'
+                  id='subGroup'
+                  value={subGroup}
+                  onChange={handleChangeSubGroup}
+                  label="Sub-Group"
+                >
+                  <MenuItem value={'E1'}>E1</MenuItem>
+                  <MenuItem value={'E2'}>E2</MenuItem>
+                  <MenuItem value={'E3'}>E3</MenuItem>
+                  <MenuItem value={'E4'}>E4</MenuItem>
+                  <MenuItem value={'E5'}>E5</MenuItem>
+                  <MenuItem value={'E6'}>E6</MenuItem>
+
+                </Select>
+              </FormControl>
             </ListItem>
           </List>
         </Collapse>
@@ -170,8 +211,8 @@ function ResponsiveDrawer(props) {
             Class Manager
           </Typography>
           <FormControlLabel
-          control={<SwitchUI color='secondary' checked ={isDark} onChange={handleThemeChange}/>}
-          label={<InvertColorsIcon />}
+            control={<SwitchUI color='secondary' checked={isDark} onChange={handleThemeChange} />}
+            label={<InvertColorsIcon />}
           />
         </Toolbar>
       </AppBar>
