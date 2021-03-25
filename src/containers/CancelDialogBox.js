@@ -6,10 +6,13 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DateTimePicker from './DateTimeComponent';
+import ConfirmationSnackbar from './ConfirmationSnackbar';
 
 export default function CancelDialogBox() {
   const [open, setOpen] = React.useState(false);
   const [slotToCancel, setSlotToCancel] = React.useState();
+  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+  const [cancelSuccessfull, setCancelSuccessfull] = React.useState(null);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -23,9 +26,17 @@ export default function CancelDialogBox() {
     setSlotToCancel(date);
   };
 
-  const handleCancelSlot = () => {
-    handleClose();
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
+
+  const handleCancelSlot = async () => {
     // send req to backend
+    setTimeout(() => {
+      setCancelSuccessfull(true);
+      // setCancelSuccessfull(false);
+      setSnackbarOpen(true);
+    }, 1000);
   }
 
   return (
@@ -33,21 +44,25 @@ export default function CancelDialogBox() {
       <Button variant="contained" color="secondary" onClick={handleClickOpen}>Cancel a slot</Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Cancel</DialogTitle>
+
         <DialogContent>
           <DialogContentText>
             Choose the date and time of the slot you want to cancel.
           </DialogContentText>
 
           <DateTimePicker slotToCancel={slotToCancel} handleDateTimeChange={handleDateTimeChange} />
-        
+
         </DialogContent>
+
         <DialogActions>
           <Button variant="outlined" onClick={handleClose} color="primary">
             Close
           </Button>
-          <Button variant="contained" disableElevation onClick={handleCancelSlot} color="primary">
+          <Button variant="contained" disableElevation onClick={() => handleCancelSlot()} color="primary">
             Confirm
           </Button>
+
+          <ConfirmationSnackbar open={snackbarOpen} handleClose={handleSnackbarClose} success={cancelSuccessfull}></ConfirmationSnackbar>
         </DialogActions>
       </Dialog>
     </>
