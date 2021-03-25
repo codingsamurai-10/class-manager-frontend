@@ -84,7 +84,7 @@ const generateRandomColorCode = () => {
 }
 
 const tableHeadingStyles = {
-  backgroundColor: "red",
+  backgroundColor: "#f50057",
   fontSize: "1.5em"
 }
 
