@@ -36,12 +36,8 @@ export default function BookDialogBox() {
   }
 
   const handleSlotDurationWanted = (event) => {
-    setSlotDurationWanted(event.target.value); // send req to backend
+    setSlotDurationWanted(event.target.value);
   }
-
-  const handleDateChange = (date) => {
-    setDateOfSlotWanted(date); // search time table of given date (to be done on backend) and return free slots
-  };
 
   const findFreeSlots = () => { // send slot duration and date to backend for searching
     setFreeSlots(slots);
@@ -74,7 +70,7 @@ export default function BookDialogBox() {
           <SubjectNameInputField handleInput={handleSubjectNameChange} />
 
           <SlotDurationSelector handleRadioChange={handleSlotDurationWanted} />
-          <DateOfSlotToBook selectedDate={dateOfSlotWanted} handleDateChange={handleDateChange} />
+          <DateOfSlotToBook selectedDate={dateOfSlotWanted} handleDateChange={setDateOfSlotWanted} />
 
           <Button
             startIcon={<SearchIcon />}
