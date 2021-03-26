@@ -9,7 +9,7 @@ import SlotDurationSelector from './SlotDurationSelector';
 import SearchIcon from '@material-ui/icons/Search';
 import AvailableFreeSlots from './AvailableFreeSlots';
 import ConfirmationSnackbar from './ConfirmationSnackbar';
-import TextField from '@material-ui/core/TextField';
+import SubjectNameInputField from './SubjectNameInputField';
 
 const slots = [8, 9, 10, 15, 19, 20, 21, 23]; // temporary data, to be fetched from backend
 
@@ -30,6 +30,10 @@ export default function BookDialogBox() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleSubjectNameChange = (event) => {
+    setSubjectName(event.target.value);
+  }
 
   const handleSlotDurationWanted = (event) => {
     setSlotDurationWanted(event.target.value); // send req to backend
@@ -67,12 +71,7 @@ export default function BookDialogBox() {
         <DialogTitle id="form-dialog-title">Book</DialogTitle>
         <DialogContent>
 
-          <TextField
-            margin="normal"
-            label="Subject name"
-            color="primary"
-            fullWidth
-          />
+          <SubjectNameInputField handleInput={handleSubjectNameChange} />
 
           <SlotDurationSelector handleRadioChange={handleSlotDurationWanted} />
           <DateOfSlotToBook selectedDate={dateOfSlotWanted} handleDateChange={handleDateChange} />
