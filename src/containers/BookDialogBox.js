@@ -9,7 +9,7 @@ import SlotDurationSelector from './SlotDurationSelector';
 import SearchIcon from '@material-ui/icons/Search';
 import AvailableFreeSlots from './AvailableFreeSlots';
 import ConfirmationSnackbar from './ConfirmationSnackbar';
-import TextField from '@material-ui/core/TextField';
+import TextInputField from './TextInputField';
 
 const slots = [8, 9, 10, 15, 19, 20, 21, 23]; // temporary data, to be fetched from backend
 
@@ -31,13 +31,13 @@ export default function BookDialogBox() {
     setOpen(false);
   };
 
-  const handleSlotDurationWanted = (event) => {
-    setSlotDurationWanted(event.target.value); // send req to backend
+  const handleSubjectNameChange = (event) => {
+    setSubjectName(event.target.value);
   }
 
-  const handleDateChange = (date) => {
-    setDateOfSlotWanted(date); // search time table of given date (to be done on backend) and return free slots
-  };
+  const handleSlotDurationWanted = (event) => {
+    setSlotDurationWanted(event.target.value);
+  }
 
   const findFreeSlots = () => { // send slot duration and date to backend for searching
     setFreeSlots(slots);
@@ -67,15 +67,9 @@ export default function BookDialogBox() {
         <DialogTitle id="form-dialog-title">Book</DialogTitle>
         <DialogContent>
 
-          <TextField
-            margin="normal"
-            label="Subject name"
-            color="primary"
-            fullWidth
-          />
-
+          <TextInputField handleInputChange={handleSubjectNameChange} />
           <SlotDurationSelector handleRadioChange={handleSlotDurationWanted} />
-          <DateOfSlotToBook selectedDate={dateOfSlotWanted} handleDateChange={handleDateChange} />
+          <DateOfSlotToBook selectedDate={dateOfSlotWanted} handleDateChange={setDateOfSlotWanted} />
 
           <Button
             startIcon={<SearchIcon />}
