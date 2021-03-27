@@ -32,7 +32,7 @@ import SwitchUI from '@material-ui/core/Switch'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import { CustomThemeContext } from '../themes/customThemeProvider';
 import Routing from '../Routing';
-import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
+import { Button, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 
 const drawerWidth = 240;
 
@@ -68,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     minWidth: 110
   },
+  
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
@@ -196,7 +197,7 @@ function ResponsiveDrawer(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar position="fixed"  className={classes.appBar}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -214,6 +215,7 @@ function ResponsiveDrawer(props) {
             control={<SwitchUI color='secondary' checked={isDark} onChange={handleThemeChange} />}
             label={<InvertColorsIcon />}
           />
+          <Button variant='outlined'  size='large' href='#'>Login</Button>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">

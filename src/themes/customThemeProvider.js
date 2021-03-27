@@ -4,14 +4,14 @@ import getTheme from './getTheme'
 
 export const CustomThemeContext = React.createContext(
   {
-    currentTheme: 'light',
+    currentTheme: 'normal',
     setTheme: null,
   },
 )
 
 const CustomThemeProvider = (props) => {
   const { children } = props
-  const currentTheme = localStorage.getItem('appTheme') || 'light'
+  const currentTheme = localStorage.getItem('appTheme') || 'normal'
   const [themeName, _setThemeName] = useState(currentTheme)
   const theme = getTheme(themeName)
   
