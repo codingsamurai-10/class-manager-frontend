@@ -1,8 +1,8 @@
-import { createMuiTheme } from '@material-ui/core'
 import dark from './dark'
-const light = createMuiTheme({})
+import normal from './normal'
+
 const themes = {
-  light,
+  normal,
   dark,
 }
 
