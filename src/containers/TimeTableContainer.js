@@ -95,18 +95,20 @@ const tableBodyCellStyles = (color) => {
   }
 }
 
+const colorOfSubjectCell = new Map();
+for (let i = 0; i < periodsSchedule.length; ++i) {
+  for (let j = 0; j < periodsSchedule[i].length; ++j) {
+    if (!colorOfSubjectCell.has(periodsSchedule[i][j].name)) {
+      colorOfSubjectCell.set(periodsSchedule[i][j].name, generateRandomColorCode());
+    }
+    periodsSchedule[i][j]["color"] = colorOfSubjectCell.get(periodsSchedule[i][j].name);
+  }
+}
+
 export default function TimeTableContainer() {
 
   let currentDay = 0;
-  const colorOfSubjectCell = new Map();
-  for (let i = 0; i < periodsSchedule.length; ++i) {
-    for (let j = 0; j < periodsSchedule[i].length; ++j) {
-      if (!colorOfSubjectCell.has(periodsSchedule[i][j].name)) {
-        colorOfSubjectCell.set(periodsSchedule[i][j].name, generateRandomColorCode());
-      }
-      periodsSchedule[i][j]["color"] = colorOfSubjectCell.get(periodsSchedule[i][j].name);
-    }
-  }
+
   return (
     <TableContainer className="time-table-container" component={Paper}>
       <Table stickyHeader>
