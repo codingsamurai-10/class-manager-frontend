@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -95,10 +95,10 @@ const tableBodyCellStyles = (color) => {
   }
 }
 
-function TimeTableContainer(){
+export default function TimeTableContainer() {
   
-  let [currentDay] = useState(0);
-  const [colorOfSubjectCell] = useState(new Map());
+  let currentDay = 0;
+  const colorOfSubjectCell = new Map();
     for (let i = 0; i < periodsSchedule.length; ++i) {
       for (let j = 0; j < periodsSchedule[i].length; ++j) {
         if (!colorOfSubjectCell.has(periodsSchedule[i][j].name)) {
@@ -148,6 +148,3 @@ function TimeTableContainer(){
       </TableContainer>
     )
   }
-
-
-export default TimeTableContainer;
