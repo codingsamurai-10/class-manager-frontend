@@ -72,8 +72,7 @@ export default function TimeTableContainer() {
         return response.json();
       })
       .then((json) => {
-        const periodsSchedule = json;
-        return initializeColors(periodsSchedule);
+        return initializeColors(json);
       })
       .then((data) => {
         setPeriodsSchedule(data);
