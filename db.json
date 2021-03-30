@@ -41,5 +41,49 @@
     {"id":33, "name": "ns", "start": 15, "end": 16 },
     {"id":34, "name": "pe", "start": 16, "end": 17 }
   ]
+  ],
+  "changes":
+  [
+    {
+      "subject": "Technical Communication",
+      "cancelled": false,
+      "prevTime": "12:00",
+      "prevDate": "18/03/2021",
+      "newDate": "20/03/2021",
+      "newTime": "3:00"
+    },
+    {
+      "subject": "Machines 2",
+      "cancelled": false,
+      "prevTime": "13:00",
+      "prevDate": "18/03/2021",
+      "newDate": "20/03/2021",
+      "newTime": "4:00"
+    },
+    {
+      "subject": "Microprocessors",
+      "cancelled": true,
+      "prevTime": "8:00",
+      "prevDate": "18/03/2021",
+      "newDate": "",
+      "newTime": ""
+    },
+    {
+      "subject": "Machine Learning",
+      "cancelled": false,
+      "prevTime": "9:00",
+      "prevDate": "20/03/2021",
+      "newDate": "21/03/2021",
+      "newTime": "10:00"
+    },
+    {
+      "subject": "Control Systems",
+      "cancelled": true,
+      "prevTime": "9:00",
+      "prevDate": "20/03/2021",
+      "newDate": "",
+      "newTime": ""
+    }
+    
   ]
 }
