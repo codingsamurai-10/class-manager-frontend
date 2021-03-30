@@ -1,0 +1,260 @@
+{
+    "periodsSchedule": [
+        [
+            {
+                "id": 1,
+                "name": "free",
+                "start": 8,
+                "end": 9
+            },
+            {
+                "id": 2,
+                "name": "ece",
+                "start": 9,
+                "end": 10
+            },
+            {
+                "id": 3,
+                "name": "free",
+                "start": 10,
+                "end": 11
+            },
+            {
+                "id": 4,
+                "name": "ns",
+                "start": 11,
+                "end": 13
+            },
+            {
+                "id": 5,
+                "name": "free",
+                "start": 13,
+                "end": 14
+            },
+            {
+                "id": 6,
+                "name": "mi",
+                "start": 14,
+                "end": 16
+            },
+            {
+                "id": 7,
+                "name": "free",
+                "start": 16,
+                "end": 17
+            }
+        ],
+        [
+            {
+                "id": 8,
+                "name": "comm",
+                "start": 8,
+                "end": 11
+            },
+            {
+                "id": 9,
+                "name": "pe",
+                "start": 11,
+                "end": 12
+            },
+            {
+                "id": 10,
+                "name": "ml",
+                "start": 12,
+                "end": 14
+            },
+            {
+                "id": 11,
+                "name": "free",
+                "start": 14,
+                "end": 15
+            },
+            {
+                "id": 12,
+                "name": "mi",
+                "start": 15,
+                "end": 17
+            }
+        ],
+        [
+            {
+                "id": 13,
+                "name": "free",
+                "start": 8,
+                "end": 10
+            },
+            {
+                "id": 14,
+                "name": "emt",
+                "start": 10,
+                "end": 11
+            },
+            {
+                "id": 15,
+                "name": "laboratory",
+                "start": 11,
+                "end": 13
+            },
+            {
+                "id": 16,
+                "name": "ead",
+                "start": 13,
+                "end": 15
+            },
+            {
+                "id": 17,
+                "name": "cs",
+                "start": 15,
+                "end": 16
+            },
+            {
+                "id": 18,
+                "name": "micro",
+                "start": 16,
+                "end": 17
+            }
+        ],
+        [
+            {
+                "id": 19,
+                "name": "free",
+                "start": 8,
+                "end": 9
+            },
+            {
+                "id": 20,
+                "name": "mi",
+                "start": 9,
+                "end": 10
+            },
+            {
+                "id": 21,
+                "name": "laboratory",
+                "start": 10,
+                "end": 11
+            },
+            {
+                "id": 22,
+                "name": "emt",
+                "start": 11,
+                "end": 13
+            },
+            {
+                "id": 23,
+                "name": "free",
+                "start": 13,
+                "end": 14
+            },
+            {
+                "id": 24,
+                "name": "ece",
+                "start": 14,
+                "end": 15
+            },
+            {
+                "id": 25,
+                "name": "free",
+                "start": 15,
+                "end": 17
+            }
+        ],
+        [
+            {
+                "id": 26,
+                "name": "ed",
+                "start": 8,
+                "end": 9
+            },
+            {
+                "id": 27,
+                "name": "cs",
+                "start": 9,
+                "end": 10
+            },
+            {
+                "id": 28,
+                "name": "micro",
+                "start": 10,
+                "end": 11
+            },
+            {
+                "id": 29,
+                "name": "laboratory",
+                "start": 11,
+                "end": 12
+            },
+            {
+                "id": 30,
+                "name": "ece",
+                "start": 12,
+                "end": 13
+            },
+            {
+                "id": 31,
+                "name": "mi",
+                "start": 13,
+                "end": 14
+            },
+            {
+                "id": 32,
+                "name": "ml",
+                "start": 14,
+                "end": 15
+            },
+            {
+                "id": 33,
+                "name": "ns",
+                "start": 15,
+                "end": 16
+            },
+            {
+                "id": 34,
+                "name": "pe",
+                "start": 16,
+                "end": 17
+            }
+        ]
+    ],
+    "changes": [
+        {
+            "subject": "Technical Communication",
+            "cancelled": false,
+            "prevTime": "12:00",
+            "prevDate": "18/03/2021",
+            "newDate": "20/03/2021",
+            "newTime": "3:00"
+        },
+        {
+            "subject": "Machines 2",
+            "cancelled": false,
+            "prevTime": "13:00",
+            "prevDate": "18/03/2021",
+            "newDate": "20/03/2021",
+            "newTime": "4:00"
+        },
+        {
+            "subject": "Microprocessors",
+            "cancelled": true,
+            "prevTime": "8:00",
+            "prevDate": "18/03/2021",
+            "newDate": "",
+            "newTime": ""
+        },
+        {
+            "subject": "Machine Learning",
+            "cancelled": false,
+            "prevTime": "9:00",
+            "prevDate": "20/03/2021",
+            "newDate": "21/03/2021",
+            "newTime": "10:00"
+        },
+        {
+            "subject": "Control Systems",
+            "cancelled": true,
+            "prevTime": "9:00",
+            "prevDate": "20/03/2021",
+            "newDate": "",
+            "newTime": ""
+        }
+    ]
+}
