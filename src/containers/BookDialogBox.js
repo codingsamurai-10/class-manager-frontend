@@ -13,7 +13,10 @@ import SubjectNameInputField from './SubjectNameInputField';
 
 const slots = [8, 9, 10, 15, 19, 20, 21, 23]; // temporary data, to be fetched from backend
 
+
+
 export default function BookDialogBox() {
+
   const [open, setOpen] = React.useState(false);
   const [subjectName, setSubjectName] = React.useState("")
   const [slotDurationWanted, setSlotDurationWanted] = React.useState(1);
@@ -39,7 +42,9 @@ export default function BookDialogBox() {
     setSlotDurationWanted(event.target.value);
   }
 
-  const findFreeSlots = () => { // send slot duration and date to backend for searching
+  const findFreeSlots = () => {
+
+    // send slot duration and date to backend for searching
     setFreeSlots(slots);
   }
 
@@ -52,16 +57,32 @@ export default function BookDialogBox() {
   };
 
   const handleBookSlot = () => { // need to set slotToBook
+    const changes = {
+      subject:subjectName,
+      cancelled:false,
+      prevTime:"",
+      prevDate:"",
+      newDate:dateOfSlotWanted.getDate() + "/" + dateOfSlotWanted.getMonth()+ "/" + dateOfSlotWanted.getFullYear(),
+      newTime:slotSelected+ ":00"
+    }
     // send req to backend
-    setTimeout(() => {
-      setCancelSuccessfull(true);
-      // setCancelSuccessfull(false);
-      setSnackbarOpen(true);
-    }, 1000);
+    fetch("http://localhost:8000/changes", {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(changes)
+    })
+      .then(() => {
+        setCancelSuccessfull(true);
+        setSnackbarOpen(true);
+      })
+    // setCancelSuccessfull(true);
+    // setSnackbarOpen(true);
+    // console.log(JSON.stringify(changes));
   }
 
   return (
     <>
+
       <Button variant="contained" color="secondary" onClick={handleClickOpen}>Book a slot</Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" maxWidth="sm">
         <DialogTitle id="form-dialog-title">Book</DialogTitle>

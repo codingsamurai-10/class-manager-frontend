@@ -32,11 +32,29 @@ export default function CancelDialogBox() {
 
   const handleCancelSlot = async () => {
     // send req to backend
-    setTimeout(() => {
+    const changes = {
+      subject:"Cancelled Class",
+      cancelled:true,
+      prevTime:slotToCancel.getHours() + ":00",
+      prevDate:slotToCancel.getDate() + "/" + slotToCancel.getMonth() + "/" + slotToCancel.getFullYear(),
+      newDate:"",
+      newTime:""
+    }
+    fetch("http://localhost:8000/changes",{
+      method: 'POST',
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify(changes)
+    }).then(()=>{
       setCancelSuccessfull(true);
-      // setCancelSuccessfull(false);
       setSnackbarOpen(true);
-    }, 1000);
+    })
+    // setTimeout(() => {
+    //   setCancelSuccessfull(true);
+    //   // setCancelSuccessfull(false);
+    //   setSnackbarOpen(true);
+    // }, 1000);
+    // console.log(slotToCancel.getHours())
+    
   }
 
   return (
