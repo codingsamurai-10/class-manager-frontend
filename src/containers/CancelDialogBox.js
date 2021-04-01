@@ -48,13 +48,6 @@ export default function CancelDialogBox() {
       setCancelSuccessfull(true);
       setSnackbarOpen(true);
     })
-    // setTimeout(() => {
-    //   setCancelSuccessfull(true);
-    //   // setCancelSuccessfull(false);
-    //   setSnackbarOpen(true);
-    // }, 1000);
-    // console.log(slotToCancel.getHours())
-    
   }
 
   return (
