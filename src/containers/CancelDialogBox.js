@@ -31,21 +31,14 @@ export default function CancelDialogBox() {
   };
 
   const handleCancelSlot = async () => {
-    // send req to backend
-    const changes = {
-      subject:"Cancelled Class",
-      cancelled:true,
-      prevTime:slotToCancel.getHours() + ":00",
-      prevDate:slotToCancel.getDate() + "/" + slotToCancel.getMonth() + "/" + slotToCancel.getFullYear(),
-      newDate:"",
-      newTime:""
-    }
-    fetch("http://localhost:8000/changes",{
+    //sent request to backend to cancel the slot selected.
+    const changes = {slotToCancel};
+    fetch("http://localhost:8000/cancel",{
       method: 'POST',
       headers: {"Content-Type":"application/json"},
       body: JSON.stringify(changes)
     }).then(()=>{
-      setCancelSuccessfull(true);
+      setCancelSuccessfull(true); //if wrong slot selected, error will show.
       setSnackbarOpen(true);
     })
   }

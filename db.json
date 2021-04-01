@@ -279,5 +279,30 @@
       "newTime": "",
       "id": 7
     }
+  ],
+  "freeSlotFinder": [
+    {
+      "slotDurationWanted": "2",
+      "dateOfSlotWanted": "2021-04-01T09:56:28.168Z",
+      "id": 1
+    }
+  ],
+  "book": [
+    {
+      "subjectName": "Blah",
+      "dateOfSlotWanted": "2021-04-01T09:56:28.168Z",
+      "slotSelected": 20,
+      "id": 1
+    }
+  ],
+  "cancel": [
+    {
+      "slotToCancel": "2021-04-01T09:30:54.376Z",
+      "id": 1
+    },
+    {
+      "slotToCancel": "2021-04-01T06:30:57.478Z",
+      "id": 2
+    }
   ]
 }

@@ -43,9 +43,15 @@ export default function BookDialogBox() {
   }
 
   const findFreeSlots = () => {
-
-    // send slot duration and date to backend for searching
-    setFreeSlots(slots);
+    const findSlots = {
+      slotDurationWanted, dateOfSlotWanted
+    }
+    fetch("http://localhost:8000/freeSlotFinder", {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(findSlots)
+    }).then(()=>{});
+    setFreeSlots(slots); //this state will be updated by backend
   }
 
   const handleSlotSelected = (slot) => {
@@ -56,28 +62,22 @@ export default function BookDialogBox() {
     setSnackbarOpen(false);
   };
 
-  const handleBookSlot = () => { // need to set slotToBook
-    const changes = {
-      subject:subjectName,
-      cancelled:false,
-      prevTime:"",
-      prevDate:"",
-      newDate:dateOfSlotWanted.getDate() + "/" + dateOfSlotWanted.getMonth()+ "/" + dateOfSlotWanted.getFullYear(),
-      newTime:slotSelected+ ":00"
+  const handleBookSlot = () => { 
+    const slotToBook = {
+      subjectName,
+      dateOfSlotWanted,
+      slotSelected
     }
-    // send req to backend
-    fetch("http://localhost:8000/changes", {
+    // sent req to backend to book the selected slot.
+    fetch("http://localhost:8000/book", {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(changes)
+      body: JSON.stringify(slotToBook)
     })
       .then(() => {
         setCancelSuccessfull(true);
         setSnackbarOpen(true);
       })
-    // setCancelSuccessfull(true);
-    // setSnackbarOpen(true);
-    // console.log(JSON.stringify(changes));
   }
 
   return (
