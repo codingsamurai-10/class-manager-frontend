@@ -31,12 +31,16 @@ export default function CancelDialogBox() {
   };
 
   const handleCancelSlot = async () => {
-    // send req to backend
-    setTimeout(() => {
-      setCancelSuccessfull(true);
-      // setCancelSuccessfull(false);
+    //sent request to backend to cancel the slot selected.
+    const changes = {slotToCancel};
+    fetch("http://localhost:8000/cancel",{
+      method: 'POST',
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify(changes)
+    }).then(()=>{
+      setCancelSuccessfull(true); //if wrong slot selected, error will show.
       setSnackbarOpen(true);
-    }, 1000);
+    })
   }
 
   return (

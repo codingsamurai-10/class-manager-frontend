@@ -35,7 +35,10 @@ import Routing from '../Routing';
 import { Button, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 
 const drawerWidth = 240;
-
+const groups = {
+  _subGroup: localStorage.getItem('subGroup') || 'E2',
+  _group: localStorage.getItem('group') || 'G1'
+}
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -88,8 +91,10 @@ function ResponsiveDrawer(props) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [open, setOpen] = React.useState(true);
-  const [group, setGroup] = React.useState('');
-  const [subGroup, setSubGroup] = React.useState('');
+  const [group, setGroup] = React.useState(groups._group);
+  const [subGroup, setSubGroup] = React.useState(groups._subGroup);
+
+
   const handleThemeChange = (e) => {
     let { checked } = e.target
     if (checked) {
@@ -108,11 +113,14 @@ function ResponsiveDrawer(props) {
   }
 
   const handleChangeGroup = (event) => {
+    localStorage.setItem('group', event.target.value);
     setGroup(event.target.value);
   }
 
   const handleChangeSubGroup = (event)=>{
+    localStorage.setItem('subGroup', event.target.value);
     setSubGroup(event.target.value);
+
   }
   const drawer = (
     <div>

@@ -13,7 +13,10 @@ import SubjectNameInputField from './SubjectNameInputField';
 
 const slots = [8, 9, 10, 15, 19, 20, 21, 23]; // temporary data, to be fetched from backend
 
+
+
 export default function BookDialogBox() {
+
   const [open, setOpen] = React.useState(false);
   const [subjectName, setSubjectName] = React.useState("")
   const [slotDurationWanted, setSlotDurationWanted] = React.useState(1);
@@ -39,8 +42,16 @@ export default function BookDialogBox() {
     setSlotDurationWanted(event.target.value);
   }
 
-  const findFreeSlots = () => { // send slot duration and date to backend for searching
-    setFreeSlots(slots);
+  const findFreeSlots = () => {
+    const findSlots = {
+      slotDurationWanted, dateOfSlotWanted
+    }
+    fetch("http://localhost:8000/freeSlotFinder", {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(findSlots)
+    }).then(()=>{});
+    setFreeSlots(slots); //this state will be updated by backend
   }
 
   const handleSlotSelected = (slot) => {
@@ -51,17 +62,27 @@ export default function BookDialogBox() {
     setSnackbarOpen(false);
   };
 
-  const handleBookSlot = () => { // need to set slotToBook
-    // send req to backend
-    setTimeout(() => {
-      setCancelSuccessfull(true);
-      // setCancelSuccessfull(false);
-      setSnackbarOpen(true);
-    }, 1000);
+  const handleBookSlot = () => { 
+    const slotToBook = {
+      subjectName,
+      dateOfSlotWanted,
+      slotSelected
+    }
+    // sent req to backend to book the selected slot.
+    fetch("http://localhost:8000/book", {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(slotToBook)
+    })
+      .then(() => {
+        setCancelSuccessfull(true);
+        setSnackbarOpen(true);
+      })
   }
 
   return (
     <>
+
       <Button variant="contained" color="secondary" onClick={handleClickOpen}>Book a slot</Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" maxWidth="sm">
         <DialogTitle id="form-dialog-title">Book</DialogTitle>
