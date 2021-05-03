@@ -11,7 +11,7 @@ import AvailableFreeSlots from './AvailableFreeSlots';
 import ConfirmationSnackbar from './ConfirmationSnackbar';
 import SubjectNameInputField from './SubjectNameInputField';
 
-const slots = [8, 9, 10, 15, 19, 20, 21, 23]; // temporary data, to be fetched from backend
+const slots = []; // temporary data, to be fetched from backend
 
 
 
@@ -52,9 +52,12 @@ export default function BookDialogBox() {
       body: JSON.stringify(findSlots)
     })
     .then(res => {
-      console.log(res);
-    });
-    setFreeSlots(slots); //this state will be updated by backend
+      return res.json();
+    })
+    .then(data=> {
+      data.map((freeSlot)=>slots.push(freeSlot['start']))
+    })
+    .then(()=>setFreeSlots(slots));
   }
 
   const handleSlotSelected = (slot) => {
