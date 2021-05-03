@@ -67,7 +67,7 @@ export default function TimeTableContainer() {
   const [periodsSchedule, setPeriodsSchedule] = React.useState(null);
 
   React.useEffect(() => {
-    fetch('http://localhost:8000/periodsschedule')
+    fetch('http://localhost:8000/periodsSchedule')
       .then((response) => {
         return response.json();
       })
