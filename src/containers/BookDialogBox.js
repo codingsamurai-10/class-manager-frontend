@@ -46,11 +46,14 @@ export default function BookDialogBox() {
     const findSlots = {
       slotDurationWanted, dateOfSlotWanted
     }
-    fetch("http://localhost:8000/freeSlotFinder", {
+    fetch("http://localhost:8000/periodsSchedule/free", {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(findSlots)
-    }).then(()=>{});
+    })
+    .then(res => {
+      console.log(res);
+    });
     setFreeSlots(slots); //this state will be updated by backend
   }
 
