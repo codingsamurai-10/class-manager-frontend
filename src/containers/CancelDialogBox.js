@@ -10,7 +10,7 @@ import ConfirmationSnackbar from './ConfirmationSnackbar';
 
 export default function CancelDialogBox() {
   const [open, setOpen] = React.useState(false);
-  const [slotToCancel, setSlotToCancel] = React.useState();
+  const [slotToCancel, setSlotToCancel] = React.useState(new Date());
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
   const [cancelSuccessfull, setCancelSuccessfull] = React.useState(null);
 
@@ -28,7 +28,8 @@ export default function CancelDialogBox() {
 
   const handleCancelSlot = async () => {
     //sent request to backend to cancel the slot selected.
-    const changes = { slotToCancel };
+    const hour = slotToCancel.getHours();
+    const changes = { slotToCancel, hour };
     fetch("http://localhost:8000/periodsSchedule/cancel", {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
