@@ -23,6 +23,8 @@ export default function BookDialogBox() {
   const [slotSelected, setSlotSelected] = React.useState(null);
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
   const [bookingSuccessfull, setBookingSuccessfull] = React.useState(null);
+  const [fullWidth, setFullWidth] = React.useState(true);
+  const [maxWidth, setMaxWidth] = React.useState('sm');
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -87,9 +89,9 @@ export default function BookDialogBox() {
 
   return (
     <>
-
       <Button variant="contained" color="secondary" onClick={handleClickOpen}>Book a slot</Button>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+
+      <Dialog fullWidth={fullWidth} maxWidth={maxWidth} open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Book</DialogTitle>
         <DialogContent>
 
