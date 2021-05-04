@@ -76,7 +76,7 @@ export default function BookDialogBox() {
       slotSelected
     }
     // sent req to backend to book the selected slot.
-    fetch("http://localhost:8000/book", {
+    fetch("http://localhost:8000/periodsSchedule/book", {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(slotToBook)
