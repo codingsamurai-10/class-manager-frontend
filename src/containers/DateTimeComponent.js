@@ -18,6 +18,7 @@ export default function DateTimeComponent(props) {
                     id="date-picker-dialog"
                     label="Pick slot"
                     format="dd/MM/yyyy HH:mm"
+                    views={['date', 'hours']}
                     value={props.slotToCancel}
                     onChange={props.handleDateTimeChange}
                     KeyboardButtonProps={{
