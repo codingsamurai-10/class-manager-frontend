@@ -11,9 +11,7 @@ import AvailableFreeSlots from './AvailableFreeSlots';
 import ConfirmationSnackbar from './ConfirmationSnackbar';
 import SubjectNameInputField from './SubjectNameInputField';
 
-const slots = []; // temporary data, to be fetched from backend
-
-
+let slots = []; // temporary data, to be fetched from backend
 
 export default function BookDialogBox() {
 
@@ -55,6 +53,7 @@ export default function BookDialogBox() {
       return res.json();
     })
     .then(data=> {
+      slots = [];
       data.map((freeSlot)=>slots.push(freeSlot['start']))
     })
     .then(()=>setFreeSlots(slots));
