@@ -22,7 +22,7 @@ export default function BookDialogBox() {
   const [freeSlots, setFreeSlots] = React.useState(null);
   const [slotSelected, setSlotSelected] = React.useState(null);
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
-  const [cancelSuccessfull, setCancelSuccessfull] = React.useState(null);
+  const [bookingSuccessfull, setBookingSuccessfull] = React.useState(null);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -49,14 +49,14 @@ export default function BookDialogBox() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(findSlots)
     })
-    .then(res => {
-      return res.json();
-    })
-    .then(data=> {
-      slots = [];
-      data.map((freeSlot)=>slots.push(freeSlot['start']))
-    })
-    .then(()=>setFreeSlots(slots));
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        slots = [];
+        data.map((freeSlot) => slots.push(freeSlot['start']));
+        setFreeSlots(slots);
+      });
   }
 
   const handleSlotSelected = (slot) => {
@@ -67,7 +67,7 @@ export default function BookDialogBox() {
     setSnackbarOpen(false);
   };
 
-  const handleBookSlot = () => { 
+  const handleBookSlot = () => {
     const slotToBook = {
       subjectName,
       dateOfSlotWanted,
@@ -80,7 +80,7 @@ export default function BookDialogBox() {
       body: JSON.stringify(slotToBook)
     })
       .then(() => {
-        setCancelSuccessfull(true);
+        setBookingSuccessfull(true);
         setSnackbarOpen(true);
       })
   }
@@ -89,7 +89,7 @@ export default function BookDialogBox() {
     <>
 
       <Button variant="contained" color="secondary" onClick={handleClickOpen}>Book a slot</Button>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" maxWidth="sm">
+      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Book</DialogTitle>
         <DialogContent>
 
@@ -117,7 +117,7 @@ export default function BookDialogBox() {
             Confirm
           </Button>}
 
-          <ConfirmationSnackbar open={snackbarOpen} handleClose={handleSnackbarClose} success={cancelSuccessfull}></ConfirmationSnackbar>
+          <ConfirmationSnackbar open={snackbarOpen} handleClose={handleSnackbarClose} success={bookingSuccessfull}></ConfirmationSnackbar>
         </DialogActions>
       </Dialog>
     </>
