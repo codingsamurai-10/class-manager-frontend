@@ -73,7 +73,8 @@ export default function BookDialogBox() {
     const slotToBook = {
       subjectName,
       dateOfSlotWanted,
-      slotSelected
+      slotSelected,
+      slotDurationWanted
     }
     // sent req to backend to book the selected slot.
     fetch("http://localhost:8000/periodsSchedule/book", {
@@ -81,8 +82,12 @@ export default function BookDialogBox() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(slotToBook)
     })
-      .then(() => {
-        setBookingSuccessfull(true);
+      .then(res => {
+        if(res.ok) setBookingSuccessfull(true);
+        setSnackbarOpen(true);
+      })
+      .catch(err => {
+        setBookingSuccessfull(false);
         setSnackbarOpen(true);
       })
   }
