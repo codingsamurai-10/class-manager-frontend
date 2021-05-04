@@ -50,7 +50,7 @@ export default function CancelDialogBox() {
             Choose the date and time of the slot you want to cancel.
           </DialogContentText>
 
-          <DateTimeComponent slotToCancel={slotToCancel} onChange={setSlotToCancel} />
+          <DateTimeComponent slotToCancel={slotToCancel} handleDateTimeChange={setSlotToCancel} />
 
         </DialogContent>
 
