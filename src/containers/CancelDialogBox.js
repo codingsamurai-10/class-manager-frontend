@@ -34,8 +34,9 @@ export default function CancelDialogBox() {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(changes)
-    }).then(() => {
-      setCancelSuccessfull(true); //if wrong slot selected, error will show.
+    }).then(res => {
+      if(res.ok) setCancelSuccessfull(true);
+      else setCancelSuccessfull(false);
       setSnackbarOpen(true);
     })
   }
