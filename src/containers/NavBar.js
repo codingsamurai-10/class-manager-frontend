@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     minWidth: 110
   },
-  
+
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
@@ -93,7 +93,6 @@ function ResponsiveDrawer(props) {
   const [open, setOpen] = React.useState(true);
   const [group, setGroup] = React.useState(groups._group);
   const [subGroup, setSubGroup] = React.useState(groups._subGroup);
-
 
   const handleThemeChange = (e) => {
     let { checked } = e.target
@@ -117,7 +116,7 @@ function ResponsiveDrawer(props) {
     setGroup(event.target.value);
   }
 
-  const handleChangeSubGroup = (event)=>{
+  const handleChangeSubGroup = (event) => {
     localStorage.setItem('subGroup', event.target.value);
     setSubGroup(event.target.value);
 
@@ -205,7 +204,7 @@ function ResponsiveDrawer(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed"  className={classes.appBar}>
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
             color="inherit"
