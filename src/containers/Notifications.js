@@ -1,15 +1,12 @@
 import { Avatar, Divider, List, ListItem, ListItemAvatar, ListItemText } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 
-//Data in form of json will be used in this same structure.
-
-
 const Notifications = () => {
-  //data fetching to be done in different file and passed as props to this component.
   const [notifs, setNotifs] = useState(null);
   useEffect(() => {
-    fetch("http://localhost:8000/changes")
+    fetch("http://localhost:8000/Notifications")
       .then(res => {
+        console.log(typeof res);
         return res.json();
       })
       .then(data => {
@@ -19,9 +16,9 @@ const Notifications = () => {
   return (
     <List className='notifications'>
       {
-        notifs && notifs.map((notif, index) => ( //use stable keys instead of index
+        notifs && notifs.map((notif) => ( //use stable keys instead of index
           <>
-            <ListItem key={index} button alignItems="flex-start">
+            <ListItem key={notif._id} button alignItems="flex-start">
               <ListItemAvatar>
                 <Avatar src={'https://ui-avatars.com/api/?background=random&rounded=true&name=' + notif.subject} />
               </ListItemAvatar>
@@ -29,12 +26,12 @@ const Notifications = () => {
                 primary={notif.subject}
                 secondary={
                   (notif.cancelled) ?
-                    `The class on ${notif.prevDate} at ${notif.prevTime} is cancelled.` :
-                    `The class is scheduled to ${notif.newTime} on ${notif.newDate}.`
+                    `The class on ${notif.date} at ${notif.time} hours is cancelled.` :
+                    `The class is scheduled for ${notif.date} at ${notif.time} hours.`
                 }
               />
             </ListItem>
-            <Divider key={index} variant="inset" component="li" />
+            <Divider key={notif._id.slice(0,5)} variant="inset" />
           </>
         ))
       }
