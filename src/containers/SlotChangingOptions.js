@@ -11,13 +11,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SlotChangingOptions() {
+export default function SlotChangingOptions({ periodsSchedule, setPeriodsSchedule }) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <CancelDialogBox />
-      <BookDialogBox />
+      <CancelDialogBox periodsSchedule={periodsSchedule} setPeriodsSchedule={setPeriodsSchedule} />
+      <BookDialogBox periodsSchedule={periodsSchedule} setPeriodsSchedule={setPeriodsSchedule} />
     </div>
   )
 }

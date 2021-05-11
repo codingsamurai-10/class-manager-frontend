@@ -10,10 +10,11 @@ import SearchIcon from '@material-ui/icons/Search';
 import AvailableFreeSlots from './AvailableFreeSlots';
 import ConfirmationSnackbar from './ConfirmationSnackbar';
 import SubjectNameInputField from './SubjectNameInputField';
+import { fetchTimeTable } from './helpers';
 
 let slots = []; // temporary data, to be fetched from backend
 
-export default function BookDialogBox() {
+export default function BookDialogBox({ periodsSchedule, setPeriodsSchedule }) {
 
   const [open, setOpen] = React.useState(false);
   const [subjectName, setSubjectName] = React.useState("")
@@ -83,13 +84,15 @@ export default function BookDialogBox() {
       body: JSON.stringify(slotToBook)
     })
       .then(res => {
-        if(res.ok) setBookingSuccessfull(true);
-        setSnackbarOpen(true);
+        if (res.ok) {
+          setBookingSuccessfull(true);
+          fetchTimeTable(setPeriodsSchedule);
+        }
       })
       .catch(err => {
         setBookingSuccessfull(false);
-        setSnackbarOpen(true);
       })
+    setSnackbarOpen(true);
   }
 
   return (

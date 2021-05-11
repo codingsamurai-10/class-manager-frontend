@@ -6,7 +6,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import randomColor from 'randomcolor';
+import { fetchTimeTable } from './helpers';
 
 const daysOfWeek = [
   'Monday',
@@ -29,13 +29,6 @@ const tableHeadings = [
   "16:00-17:00"
 ];
 
-const generateRandomColorCode = () => {
-  return randomColor({
-    luminosity: "light",
-    hue: "blue"
-  });
-}
-
 const tableHeadingStyles = {
   backgroundColor: "#f50057",
   fontSize: "1.5em"
@@ -48,39 +41,11 @@ const tableBodyCellStyles = (color) => {
   }
 }
 
-const colorOfSubjectCell = new Map();
-
-const initializeColors = (arr) => {
-  for (let i = 0; i < arr.length; ++i) {
-    for (let j = 0; j < arr[i].length; ++j) {
-      if (!colorOfSubjectCell.has(arr[i][j].name)) {
-        colorOfSubjectCell.set(arr[i][j].name, generateRandomColorCode());
-      }
-      arr[i][j]["color"] = colorOfSubjectCell.get(arr[i][j].name);
-    }
-  }
-  return arr;
-}
-
-export default function TimeTableContainer() {
-
-  const [periodsSchedule, setPeriodsSchedule] = React.useState(null);
+export default function TimeTableContainer({ periodsSchedule, setPeriodsSchedule }) {
 
   React.useEffect(() => {
-    const fetchTimeTable = () => {
-      fetch('http://localhost:8000/periodsSchedule')
-        .then((response) => {
-          return response.json();
-        })
-        .then((json) => {
-          return initializeColors(json);
-        })
-        .then((data) => {
-          setPeriodsSchedule(data);
-        });
-    }
-    fetchTimeTable();
-  }, [periodsSchedule]);
+    fetchTimeTable(setPeriodsSchedule);
+  }, []);
 
   let currentDay = 0;
   return (

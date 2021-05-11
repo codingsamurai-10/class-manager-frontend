@@ -7,8 +7,9 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DateTimeComponent from './DateTimeComponent';
 import ConfirmationSnackbar from './ConfirmationSnackbar';
+import { fetchTimeTable } from './helpers';
 
-export default function CancelDialogBox() {
+export default function CancelDialogBox({ periodsSchedule, setPeriodsSchedule }) {
   const [open, setOpen] = React.useState(false);
   const [slotToCancel, setSlotToCancel] = React.useState(new Date());
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
@@ -35,7 +36,10 @@ export default function CancelDialogBox() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(changes)
     }).then(res => {
-      if(res.ok) setCancelSuccessfull(true);
+      if(res.ok) {
+        setCancelSuccessfull(true);
+        fetchTimeTable(setPeriodsSchedule);
+      }
       else setCancelSuccessfull(false);
       setSnackbarOpen(true);
     })
