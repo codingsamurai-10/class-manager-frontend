@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 const Notifications = () => {
   const [notifs, setNotifs] = useState(null);
   useEffect(() => {
-    fetch("http://localhost:8000/api/Notifications")
+    fetch("/api/Notifications")
       .then(res => {
         console.log(typeof res);
         return res.json();

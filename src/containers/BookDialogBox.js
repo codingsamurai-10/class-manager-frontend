@@ -47,7 +47,7 @@ export default function BookDialogBox({ periodsSchedule, setPeriodsSchedule }) {
     const findSlots = {
       slotDurationWanted, dateOfSlotWanted
     }
-    fetch("http://localhost:8000/api/periodsSchedule/free", {
+    fetch("/api/periodsSchedule/free", {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(findSlots)
@@ -78,7 +78,7 @@ export default function BookDialogBox({ periodsSchedule, setPeriodsSchedule }) {
       slotDurationWanted
     }
     // sent req to backend to book the selected slot.
-    fetch("http://localhost:8000/api/periodsSchedule/book", {
+    fetch("/api/periodsSchedule/book", {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(slotToBook)

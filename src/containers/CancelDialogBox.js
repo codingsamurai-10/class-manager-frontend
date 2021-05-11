@@ -31,7 +31,7 @@ export default function CancelDialogBox({ periodsSchedule, setPeriodsSchedule })
     //sent request to backend to cancel the slot selected.
     const hour = slotToCancel.getHours();
     const changes = { slotToCancel, hour };
-    fetch("http://localhost:8000/api/periodsSchedule/cancel", {
+    fetch("/api/periodsSchedule/cancel", {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(changes)
