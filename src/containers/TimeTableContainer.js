@@ -67,17 +67,20 @@ export default function TimeTableContainer() {
   const [periodsSchedule, setPeriodsSchedule] = React.useState(null);
 
   React.useEffect(() => {
-    fetch('http://localhost:8000/periodsSchedule')
-      .then((response) => {
-        return response.json();
-      })
-      .then((json) => {
-        return initializeColors(json);
-      })
-      .then((data) => {
-        setPeriodsSchedule(data);
-      });
-  }, [])
+    const fetchTimeTable = () => {
+      fetch('http://localhost:8000/periodsSchedule')
+        .then((response) => {
+          return response.json();
+        })
+        .then((json) => {
+          return initializeColors(json);
+        })
+        .then((data) => {
+          setPeriodsSchedule(data);
+        });
+    }
+    fetchTimeTable();
+  }, [periodsSchedule]);
 
   let currentDay = 0;
   return (
