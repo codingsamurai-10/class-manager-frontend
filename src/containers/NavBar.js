@@ -130,63 +130,64 @@ function ResponsiveDrawer(props) {
       <List> {/*Can also use Home icon instead of table icon */}
         <Divider />
 
-        <ListItem button onClick={handleClick}>
-          <ListItemIcon ><PersonIcon /></ListItemIcon>
-          <ListItemText primary={'Profile Info'} />
-          {open ? <ExpandLess /> : <ExpandMore />}
-        </ListItem>
-        <Collapse in={open} timeout="auto" unMountOnExit>
-          <List component="div" disablePadding>
-            <ListItem button className={classes.nested}>
-              <ListItemIcon>
-                <PersonOutlineIcon />
-              </ListItemIcon>
-              <ListItemText primary="Abstergo" />
-            </ListItem>
-            <ListItem button className={classes.nested}>
-              <ListItemIcon>
-                <ClassIcon />
-              </ListItemIcon>
-              <FormControl className={classes.formControl}>
-                <InputLabel id='Group-label'>Group</InputLabel>
-                <Select
-                  labelId='Group-label'
-                  id='Group'
-                  value={group}
-                  onChange={handleChangeGroup}
-                  label="Group"
-                >
-                  <MenuItem value={'G1'}>G1</MenuItem>
-                  <MenuItem value={'G2'}>G2</MenuItem>
-                </Select>
-              </FormControl>
-            </ListItem>
-            <ListItem button className={classes.nested}>
-              <ListItemIcon>
-                <GroupIcon />
-              </ListItemIcon>
-              <FormControl className={classes.formControl}>
-                <InputLabel id='subGroup-label'>Sub-Group</InputLabel>
-                <Select
-                  labelId='subGroup-label'
-                  id='subGroup'
-                  value={subGroup}
-                  onChange={handleChangeSubGroup}
-                  label="Sub-Group"
-                >
-                  <MenuItem value={'E1'}>E1</MenuItem>
-                  <MenuItem value={'E2'}>E2</MenuItem>
-                  <MenuItem value={'E3'}>E3</MenuItem>
-                  <MenuItem value={'E4'}>E4</MenuItem>
-                  <MenuItem value={'E5'}>E5</MenuItem>
-                  <MenuItem value={'E6'}>E6</MenuItem>
+        {profileInfo && <>
+          <ListItem button onClick={handleClick}>
+            <ListItemIcon ><PersonIcon /></ListItemIcon>
+            <ListItemText primary={'Profile Info'} />
+            {open ? <ExpandLess /> : <ExpandMore />}
+          </ListItem>
+          <Collapse in={open} timeout="auto" unMountOnExit>
+            <List component="div" disablePadding>
+              <ListItem button className={classes.nested}>
+                <ListItemIcon>
+                  <PersonOutlineIcon />
+                </ListItemIcon>
+                <ListItemText primary={profileInfo.username} />
+              </ListItem>
+              <ListItem button className={classes.nested}>
+                <ListItemIcon>
+                  <ClassIcon />
+                </ListItemIcon>
+                <FormControl className={classes.formControl}>
+                  <InputLabel id='Group-label'>Group</InputLabel>
+                  <Select
+                    labelId='Group-label'
+                    id='Group'
+                    value={group}
+                    onChange={handleChangeGroup}
+                    label="Group"
+                  >
+                    <MenuItem value={'G1'}>G1</MenuItem>
+                    <MenuItem value={'G2'}>G2</MenuItem>
+                  </Select>
+                </FormControl>
+              </ListItem>
+              <ListItem button className={classes.nested}>
+                <ListItemIcon>
+                  <GroupIcon />
+                </ListItemIcon>
+                <FormControl className={classes.formControl}>
+                  <InputLabel id='subGroup-label'>Sub-Group</InputLabel>
+                  <Select
+                    labelId='subGroup-label'
+                    id='subGroup'
+                    value={subGroup}
+                    onChange={handleChangeSubGroup}
+                    label="Sub-Group"
+                  >
+                    <MenuItem value={'E1'}>E1</MenuItem>
+                    <MenuItem value={'E2'}>E2</MenuItem>
+                    <MenuItem value={'E3'}>E3</MenuItem>
+                    <MenuItem value={'E4'}>E4</MenuItem>
+                    <MenuItem value={'E5'}>E5</MenuItem>
+                    <MenuItem value={'E6'}>E6</MenuItem>
 
-                </Select>
-              </FormControl>
-            </ListItem>
-          </List>
-        </Collapse>
-
+                  </Select>
+                </FormControl>
+              </ListItem>
+            </List>
+          </Collapse>
+        </>}
         <ListItem button component={Link} to='/' key={'Time-Table'}>
           <ListItemIcon><TableChartIcon /></ListItemIcon>
           <ListItemText primary={'Time-Table'} />
