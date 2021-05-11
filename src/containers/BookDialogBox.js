@@ -88,11 +88,11 @@ export default function BookDialogBox({ periodsSchedule, setPeriodsSchedule }) {
           setBookingSuccessfull(true);
           fetchTimeTable(setPeriodsSchedule);
         }
+        else {
+          setBookingSuccessfull(false);
+        }
+        setSnackbarOpen(true);
       })
-      .catch(err => {
-        setBookingSuccessfull(false);
-      })
-    setSnackbarOpen(true);
   }
 
   return (
