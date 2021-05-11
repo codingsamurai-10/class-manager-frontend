@@ -33,6 +33,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import { CustomThemeContext } from '../themes/customThemeProvider';
 import Routing from '../Routing';
 import { Button, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
+import { UserContext } from './UserContext';
 
 const drawerWidth = 240;
 const groups = {
@@ -93,6 +94,8 @@ function ResponsiveDrawer(props) {
   const [open, setOpen] = React.useState(true);
   const [group, setGroup] = React.useState(groups._group);
   const [subGroup, setSubGroup] = React.useState(groups._subGroup);
+
+  const profileInfo = React.useContext(UserContext);
 
   const handleThemeChange = (e) => {
     let { checked } = e.target
@@ -222,7 +225,8 @@ function ResponsiveDrawer(props) {
             control={<SwitchUI color='secondary' checked={isDark} onChange={handleThemeChange} />}
             label={<InvertColorsIcon />}
           />
-          <Button variant='outlined' size='large' href="/api/auth/google">Login</Button>
+          {!profileInfo && <Button variant='outlined' size='large' href="/api/auth/google">Login</Button>}
+          {profileInfo && <Button variant='outlined' size='large' href="/api/auth/logout">Logout</Button>}
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
