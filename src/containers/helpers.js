@@ -10,4 +10,4 @@ export function getDateOfNextFriday() {
 
 export function disableWeekends(date) {
     return date.getDay() === 0 || date.getDay() === 6;
-  }
+}
