@@ -222,7 +222,7 @@ function ResponsiveDrawer(props) {
             control={<SwitchUI color='secondary' checked={isDark} onChange={handleThemeChange} />}
             label={<InvertColorsIcon />}
           />
-          <Button variant='outlined' size='large' href="http://localhost:8000/auth/google">Login</Button>
+          <Button variant='outlined' size='large' href="http://localhost:8000/api/auth/google">Login</Button>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">

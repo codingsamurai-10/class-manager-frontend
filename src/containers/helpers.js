@@ -37,7 +37,7 @@ const initializeColors = (arr) => {
 
 
 export function fetchTimeTable(setPeriodsSchedule) {
-    fetch('http://localhost:8000/periodsSchedule')
+    fetch('http://localhost:8000/api/periodsSchedule')
         .then((response) => {
             return response.json();
         })
