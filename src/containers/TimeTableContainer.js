@@ -49,8 +49,8 @@ export default function TimeTableContainer({ periodsSchedule, setPeriodsSchedule
 
   let currentDay = 0;
   return (
-    <>
-      {periodsSchedule && <TableContainer className="time-table-container" component={Paper}>
+    <Paper className="time-table-container">
+      {periodsSchedule && <TableContainer component={Paper}>
         <Table stickyHeader>
           <TableHead>
             <TableRow>
@@ -90,6 +90,6 @@ export default function TimeTableContainer({ periodsSchedule, setPeriodsSchedule
           </TableBody>
         </Table>
       </TableContainer>}
-    </>
+    </Paper>
   )
 }
